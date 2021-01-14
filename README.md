@@ -7,7 +7,7 @@ class NotificationReceiver: BroadcastReceiver(){
         val repeatingIntent = Intent(context, RepeatingActivity::class.java)
         repeatingIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP //replace the same old activity when activity is already opened
         val requestCode = 100
-				val pendingIntent = PendingIntent.getActivity(context, requestCode, repeatingIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+	val pendingIntent = PendingIntent.getActivity(context, requestCode, repeatingIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notificationManager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
         val notificationBuilder = NotificationCompat.Builder(context!!, "notify")
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             calendar.set(Calendar.HOUR_OF_DAY, 22)
             calendar.set(Calendar.MINUTE, 10)
             val intent = Intent(this, NotificationReceiver::class.java)
-						val requestCode = 100
+	    val requestCode = 100
             val pendingIntent = PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT)
             val alarmManager = getSystemService(ALARM_SERVICE) as? AlarmManager
             alarmManager?.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
