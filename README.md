@@ -92,3 +92,22 @@ class MainActivity : AppCompatActivity() {
     }
 }
 ```
+
+# Cancel Notification
+
+```kotlin
+	
+	private fun cancelNotification(){
+	    val alarmManager =
+		context?.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
+	    val requestCode = Constants.Notification.NOTIFICATION_REQUEST_CODE
+	    val intent = Intent(requireContext(), NotificationReceiver::class.java)
+	    val pendingIntent =
+		PendingIntent.getService(context, requestCode, intent,
+		    PendingIntent.FLAG_NO_CREATE)
+	    if (pendingIntent != null && alarmManager != null) {
+		alarmManager.cancel(pendingIntent)
+	    }
+	}
+
+```
